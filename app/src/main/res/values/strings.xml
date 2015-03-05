@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Inquisitor</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_hint">Hint</string>
+    <string name="question">FD, RT, LT, RT, Turtle</string>
+    <string name="hint">Hint: Programming</string>
+
+    <color name="back">#181818</color>
+    <color name="text">#979797</color>
+    <color name="text2">#ff6600</color>
+
+    <string name="done_button">Done</string>
+
+    <string name="q1">FD RT LT BK Turtle</string>
+    <string name="q2">Sixth sense on paper</string>
+
+    <string name="a1">Logo</string>
+    <string name="a2">Pranav Mistry</string>
+
+</resources>
