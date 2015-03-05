@@ -2,11 +2,15 @@
 <resources>
 
     <string name="app_name">Inquisitor</string>
-    <string name="hello_world">Hello world!</string>
+
+    <string name="text">About:</string>
+    <string name="text2">INQUISITOR V1.0.0</string>
+    <string name="text3">Developed by Appex Corporation</string>
+    <string name="text4">© Anuraag Baishya 2015</string>
+    <string name="text5">Licensed under Apache License 2.0</string>
+
     <string name="action_settings">Settings</string>
-    <string name="action_hint">Hint</string>
-    <string name="question">FD, RT, LT, RT, Turtle</string>
-    <string name="hint">Hint: Programming</string>
+    <string name="about">About</string>
 
     <color name="back">#181818</color>
     <color name="text">#979797</color>
@@ -14,10 +18,6 @@
 
     <string name="done_button">Done</string>
 
-    <string name="q1">FD RT LT BK Turtle</string>
-    <string name="q2">Sixth sense on paper</string>
-
-    <string name="a1">Logo</string>
-    <string name="a2">Pranav Mistry</string>
+    <string name="title_activity_about">Inquisitor 1.0.0</string>
 
 </resources>
