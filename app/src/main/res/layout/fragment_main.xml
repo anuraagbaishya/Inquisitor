@@ -8,32 +8,4 @@
     android:background="@drawable/bg"
     android:clickable="false">
 
-    <TextView
-        android:id="@+id/textviewname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="166dp"
-        android:textColor="@color/text2"
-        android:textSize="12pt"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-    <EditText
-        android:id="@+id/edittext1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:textColor="@color/text2"
-        android:layout_gravity="center"
-        android:layout_below="@+id/textviewname"
-        android:layout_marginTop="15dp"
-      />
-    <Button
-        android:id="@+id/done_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/done_button"
-        android:layout_below="@+id/edittext1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp" />
-
 </RelativeLayout>

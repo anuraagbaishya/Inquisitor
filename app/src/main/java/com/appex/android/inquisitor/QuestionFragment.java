@@ -27,7 +27,7 @@ public class QuestionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_main, container, false);
+        final View rootView = inflater.inflate(R.layout.activity_main, container, false);
         Button StartButton=(Button)rootView.findViewById(R.id.startbutton);
         StartButton.setOnClickListener(new View.OnClickListener() {
             @Override

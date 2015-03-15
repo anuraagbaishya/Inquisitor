@@ -1,5 +1,6 @@
 package com.appex.android.inquisitor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -30,7 +32,7 @@ public class QuestionActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_question, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -44,6 +46,9 @@ public class QuestionActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        if(id== R.id.action_about){
+            startActivity(new Intent(this, AboutActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -61,6 +66,11 @@ public class QuestionActivity extends ActionBarActivity {
                 "logo",
                 "pranav mistry"
         };
+        public String hint[]={
+                "Programming",
+                "Cameras and Projectors"
+        };
+
 
         public PlaceholderFragment() {
         }
@@ -68,9 +78,10 @@ public class QuestionActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            final View rootView = inflater.inflate(R.layout.activity_question, container, false);
             EditText t = (EditText) rootView.findViewById(R.id.edittext1);
-            TextView qView=(TextView)rootView.findViewById(R.id.textviewname);
+            final TextView qView=(TextView)rootView.findViewById(R.id.textviewname);
+            final TextView hView=(TextView)rootView.findViewById(R.id.hintview);
             String ans1;
             //for(int i=0;i<2;i++) {
             //do {
@@ -81,7 +92,18 @@ public class QuestionActivity extends ActionBarActivity {
                 qView.append(ques[1]);
             //} while (!(ans1.equals(ans[0])));
             //}
-            return rootView;
+            Button HintButton=(Button)rootView.findViewById(R.id.hintbutton);
+            HintButton.setOnClickListener(new View.OnClickListener() {
+                int count=0;
+                @Override
+                public void onClick(View v) {
+                    if(count==0) {
+                        hView.append(hint[0]);
+                    }
+                    count++;
+                }
+            });
+                return rootView;
+            }
         }
     }
-}
