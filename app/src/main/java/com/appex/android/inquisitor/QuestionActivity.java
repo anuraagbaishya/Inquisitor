@@ -54,17 +54,20 @@ public class QuestionActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class PlaceholderFragment extends Fragment {
         public String ques[]={
                 "FD,RT,LT,BK,Turtle",
-                "Sixth Sense on Paper"
+                "Sixth Sense on Paper",
+                "Questions",
+                "Questions2",
+                "Questions3"
         };
         public String ans[]={
                 "logo",
-                "pranav mistry"
+                "pranav mistry",
+                "ans",
+                "ans1",
+                "ans2"
         };
         public String hint[]={
                 "Programming",
@@ -79,19 +82,30 @@ public class QuestionActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_question, container, false);
-            EditText t = (EditText) rootView.findViewById(R.id.edittext1);
+            final EditText t = (EditText) rootView.findViewById(R.id.edittext1);
             final TextView qView=(TextView)rootView.findViewById(R.id.textviewname);
             final TextView hView=(TextView)rootView.findViewById(R.id.hintview);
-            String ans1;
-            //for(int i=0;i<2;i++) {
-            //do {
+
             qView.append(ques[0]);
-            ans1 = t.getText().toString();
             t.setGravity(Gravity.CENTER);
-            if(ans1.equals(ans[0]))
-                qView.append(ques[1]);
-            //} while (!(ans1.equals(ans[0])));
-            //}
+            Button DoneButton=(Button)rootView.findViewById(R.id.done_button);
+            DoneButton.setOnClickListener(new View.OnClickListener(){
+                String ans1;
+                public void onClick(View dview) {
+                    for (int i = 0; i < ques.length; i++) {
+                        int j=i+1;
+                        ans1 = t.getText().toString();
+                        if (ans1.equals(ans[i])) {
+                            qView.setText("");
+                            t.setText("");
+                            if(j!=ques.length)
+                                qView.append(ques[j]);
+                            else
+                                qView.append("Congrats!You have completed the quiz");
+                        }
+                    }
+                }
+            });
             Button HintButton=(Button)rootView.findViewById(R.id.hintbutton);
             HintButton.setOnClickListener(new View.OnClickListener() {
                 int count=0;

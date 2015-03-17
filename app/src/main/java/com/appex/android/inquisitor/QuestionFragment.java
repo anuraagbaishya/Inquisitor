@@ -20,23 +20,30 @@ public class QuestionFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
+
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.activity_main, container, false);
-        Button StartButton=(Button)rootView.findViewById(R.id.startbutton);
+        Button StartButton = (Button) rootView.findViewById(R.id.startbutton);
+
         StartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), QuestionActivity.class);
                 startActivity(intent);
+
             }
         });
 
         return rootView;
     }
- }
+}
+
+
+
+
