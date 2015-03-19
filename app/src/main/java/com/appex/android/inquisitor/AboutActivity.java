@@ -1,5 +1,6 @@
 package com.appex.android.inquisitor;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 public class AboutActivity extends ActionBarActivity {
@@ -56,6 +58,17 @@ public class AboutActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_about, container, false);
+            Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/1942.ttf");
+            TextView text1=(TextView)rootView.findViewById(R.id.textView);
+            TextView text2=(TextView)rootView.findViewById(R.id.textView2);
+            TextView text3=(TextView)rootView.findViewById(R.id.textView3);
+            TextView text4=(TextView)rootView.findViewById(R.id.textView4);
+            TextView text5=(TextView)rootView.findViewById(R.id.textView5);
+            text1.setTypeface(typeface);
+            text2.setTypeface(typeface);
+            text3.setTypeface(typeface);
+            text4.setTypeface(typeface);
+            text5.setTypeface(typeface);
             return rootView;
         }
     }

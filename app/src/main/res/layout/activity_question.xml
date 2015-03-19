@@ -5,53 +5,71 @@
     android:background="@drawable/bg"
     tools:ignore="MergeRootFrame" >
     <TextView
+        android:textStyle="bold"
         android:id="@+id/textviewname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginTop="150dp"
         android:textColor="@color/text2"
-        android:textSize="12pt"
+        android:textSize="13pt"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
     <EditText
         android:id="@+id/edittext1"
         android:layout_width="fill_parent"
+        android:maxLines="1"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:textSize="11pt"
+        android:textSize="12pt"
         android:textColor="@color/text2"
         android:layout_gravity="center"
         android:layout_below="@+id/textviewname"
         android:layout_marginTop="15dp"
+
     />
     <TextView
         android:layout_width="wrap_content"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:id="@+id/hintview"
-        android:textSize="11pt"
+        android:textSize="12pt"
         android:textColor="@color/text2"
         android:layout_below="@+id/edittext1"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true" />
     <Button
         android:id="@+id/done_button"
+        android:textSize="12pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="@string/done_button"
         android:background="@android:color/transparent"
         android:textColor="@color/text2"
         android:layout_alignTop="@+id/hintbutton"
-        android:layout_marginLeft="179dp"/>
+        android:layout_marginLeft="189dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="12pt"
+        android:textStyle="bold"
         android:id="@+id/hintbutton"
         android:text="@string/hintbutton"
         android:background="@android:color/transparent"
         android:textColor="@color/text2"
-        android:layout_marginLeft="111dp"
+        android:layout_marginLeft="101dp"
         android:layout_marginTop="14dp"
         android:layout_below="@+id/hintview"
          />
+    <TextView
+        android:id="@+id/attemptview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text2"
+        android:textSize="10pt"
+        android:layout_marginTop="75dp"
+        android:layout_alignLeft="@+id/done_button"
+        android:layout_alignStart="@+id/done_button" />
 
 </RelativeLayout>

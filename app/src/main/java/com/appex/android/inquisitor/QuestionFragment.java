@@ -1,6 +1,7 @@
 package com.appex.android.inquisitor;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -30,6 +31,8 @@ public class QuestionFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.activity_main, container, false);
         Button StartButton = (Button) rootView.findViewById(R.id.startbutton);
+        Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/1942.ttf");
+        StartButton.setTypeface(typeface);
 
         StartButton.setOnClickListener(new View.OnClickListener() {
             @Override

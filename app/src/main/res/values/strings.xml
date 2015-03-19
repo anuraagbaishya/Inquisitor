@@ -18,8 +18,11 @@
     <color name="text2">#ff6600</color>
 
     <string name="done_button">DONE</string>
-    <string name="startbutton">START</string>
+    <string name="startbutton">ENTER THE INQUISITOR</string>
     <string name="hintbutton">HINT</string>
+
+    <string name="correcttoast">Correct!</string>
+    <string name="incorrecttoast">Try Again</string>
 
     <string name="title_activity_about">Inquisitor 1.0.0</string>
     <string name="title_activity_question">Inquisitor</string>
