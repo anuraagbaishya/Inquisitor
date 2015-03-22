@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class QuestionFragment extends Fragment {
@@ -31,7 +32,9 @@ public class QuestionFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.activity_main, container, false);
         Button StartButton = (Button) rootView.findViewById(R.id.startbutton);
-        Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/1942.ttf");
+        Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/brotherDeluxe.ttf");
+        TextView View=(TextView)rootView.findViewById(R.id.welcomemsg);
+        View.setTypeface(typeface);
         StartButton.setTypeface(typeface);
 
         StartButton.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +49,3 @@ public class QuestionFragment extends Fragment {
         return rootView;
     }
 }
-
-
-
-

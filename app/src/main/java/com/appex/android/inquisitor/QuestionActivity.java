@@ -91,6 +91,8 @@ public class QuestionActivity extends ActionBarActivity {
                 "Ghetto Therapy",
                 "Emanuel Chiroco"
         };
+        int i=0;
+        int j=0;
 
 
         public PlaceholderFragment() {
@@ -114,15 +116,15 @@ public class QuestionActivity extends ActionBarActivity {
             DoneButton.setOnClickListener(new View.OnClickListener(){
                 String ans1;
                 public void onClick(View dview) {
-                    for (int i = 0; i < ques.length; i++) {
-                        int j=i+1;
+                    for (i = 0; i < ques.length; i++) {
+                        j=i+1;
                         ans1 = t.getText().toString();
                         if (ans1.equals(ans[i])) {
                             Toast.makeText(getActivity(),R.string.correcttoast,Toast.LENGTH_SHORT).show();
-                            qView.setText("");
+                            hView.setText("");
                             t.setText("");
                             if(j!=ques.length)
-                                qView.append(ques[j]);
+                                qView.setText(ques[j]);
                             else
                                 qView.append("Congrats!You have completed the quiz");
                             break;
@@ -133,13 +135,9 @@ public class QuestionActivity extends ActionBarActivity {
             Button HintButton=(Button)rootView.findViewById(R.id.hintbutton);
             HintButton.setTypeface(typeface);
             HintButton.setOnClickListener(new View.OnClickListener() {
-                int count=0;
                 @Override
                 public void onClick(View v) {
-                    if(count==0) {
-                        hView.append(hint[0]);
-                    }
-                    count++;
+                    hView.setText(hint[j]);
                 }
             });
             return rootView;
