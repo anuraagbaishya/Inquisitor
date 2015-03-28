@@ -22,7 +22,7 @@ public class StartActivity extends ActionBarActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 1500);
+        }, 2000);
     }
 
 

@@ -125,8 +125,10 @@ public class QuestionActivity extends ActionBarActivity {
                             t.setText("");
                             if(j!=ques.length)
                                 qView.setText(ques[j]);
-                            else
-                                qView.append("Congrats!You have completed the quiz");
+                            else {
+                                Intent intent = new Intent(getActivity(), EndActivity.class);
+                                startActivity(intent);
+                            }
                             break;
                         }
                     }
@@ -137,6 +139,7 @@ public class QuestionActivity extends ActionBarActivity {
             HintButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    hView.setGravity(Gravity.CENTER);
                     hView.setText(hint[j]);
                 }
             });

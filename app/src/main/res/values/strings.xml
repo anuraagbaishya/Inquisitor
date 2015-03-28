@@ -10,8 +10,8 @@
     <string name="text5">Licensed under Apache License 2.0</string>
     <string name="welcometext">WELCOME TO INQUISITOR</string>
     <string name="weltext2">Tap Start to continue</string>
-
-
+    <string name="fontcourtesy">Font Used: 1942 Report by Johan Holmdahl</string>
+    <string name="end">"Inquisitor salutes you O' Wise One!</string>
     <string name="action_settings">Settings</string>
     <string name="about">About</string>
 
@@ -22,7 +22,6 @@
     <string name="done_button">DONE</string>
     <string name="startbutton">ENTER THE INQUISITOR</string>
     <string name="hintbutton">HINT</string>
-
     <string name="correcttoast">Correct!</string>
     <string name="incorrecttoast">Try Again</string>
 
@@ -37,6 +36,7 @@
     <string name="title_activity_strt">StrtActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_end">EndActivity</string>
 
 
 </resources>

@@ -30,7 +30,7 @@ public class QuestionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.activity_main, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_question, container, false);
         Button StartButton = (Button) rootView.findViewById(R.id.startbutton);
         Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/brotherDeluxe.ttf");
         TextView View=(TextView)rootView.findViewById(R.id.welcomemsg);

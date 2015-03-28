@@ -4,6 +4,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -64,11 +66,38 @@ public class AboutActivity extends ActionBarActivity {
             TextView text3=(TextView)rootView.findViewById(R.id.textView3);
             TextView text4=(TextView)rootView.findViewById(R.id.textView4);
             TextView text5=(TextView)rootView.findViewById(R.id.textView5);
+            TextView htext=(TextView)rootView.findViewById(R.id.hyperlink);
+            TextView htext2=(TextView)rootView.findViewById(R.id.hyperlink2);
+            TextView font=(TextView)rootView.findViewById(R.id.fontcourtesy);
             text1.setTypeface(typeface);
             text2.setTypeface(typeface);
             text3.setTypeface(typeface);
             text4.setTypeface(typeface);
             text5.setTypeface(typeface);
+            htext.setText(
+                    Html.fromHtml(
+                            "<a href=\"https://github.com/anuraagbaishya/Inquisitor\">See source on GitHub</a> ")
+            );
+            htext.setMovementMethod(LinkMovementMethod.getInstance());
+            htext.setTypeface(typeface);
+            htext2.append("Logo Icon by ");
+            htext2.append(
+                    Html.fromHtml(
+                            "<a href=\"http://www.freepik.com\">Freepik</a>") //<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+            );
+            htext2.append(" from ");
+            htext2.append(
+                    Html.fromHtml(
+                            "<a href=\"http://www.flaticon.com\">Flaticon</a>")
+                    );
+            htext2.append(". Flaticon is licensed under ");
+            htext2.append(
+                    Html.fromHtml(
+                            "<a href=\"http://creativecommons.org/licenses/by/3.0/\">CC BY 3.0</a>"
+                    )
+            );
+            htext2.setTypeface(typeface);
+            font.setTypeface(typeface);
             return rootView;
         }
     }
