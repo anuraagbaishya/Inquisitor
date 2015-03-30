@@ -16,6 +16,7 @@
             android:textSize="13pt"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
+
         <EditText
             android:id="@+id/edittext1"
             android:layout_width="fill_parent"
@@ -71,5 +72,6 @@
             android:textSize="10pt"
             android:layout_marginTop="75dp"
             android:layout_alignLeft="@+id/done_button"
-            android:layout_alignStart="@+id/done_button" />
+            android:layout_alignStart="@+id/done_button"
+        />
     </RelativeLayout>

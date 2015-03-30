@@ -1,7 +1,9 @@
 package com.appex.android.inquisitor;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -23,6 +25,10 @@ public class QuestionActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
+        Resources res = getResources();
+        Drawable drawable = res.getDrawable(R.drawable.bgbar);
+        getSupportActionBar().setBackgroundDrawable(drawable);
+        getSupportActionBar().setElevation(0f);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
@@ -66,7 +72,8 @@ public class QuestionActivity extends ActionBarActivity {
                 "Whenever windows opened, it was there. But it will soon disappear.",
                 "Grand Theft Auto, Ranbir Kapoor.",
                 "Hoomerpalooza, Lollapalooza.",
-                "Was used in war, now a TV star."
+                "Was used in war, now a TV star.",
+                "Juiced by the National Research Corporation"
 
         };
         public String ans[]={
@@ -78,7 +85,8 @@ public class QuestionActivity extends ActionBarActivity {
                 "internet explorer",
                 "rockstar",
                 "cypress hill",
-                "arrow"
+                "arrow",
+                "minute maid"
         };
         public String hint[]={
                 "Programming",
@@ -89,10 +97,19 @@ public class QuestionActivity extends ActionBarActivity {
                 "Thomas Reardon",
                 "It's a one word connection",
                 "Ghetto Therapy",
-                "Emanuel Chiroco"
+                "Emanuel Chiroco",
+                "Odwalla"
         };
-        int i=0;
-        int j=0;
+        public String error[]={
+                "Oops! That's Not Correct.",
+                "That was close. Keep trying",
+                "Getting closer...",
+                "Try Google, maybe.",
+                "Try Again!",
+                "Just a little more effort."
+        };
+
+        int mcount=0;
 
 
         public PlaceholderFragment() {
@@ -113,24 +130,28 @@ public class QuestionActivity extends ActionBarActivity {
             t.setGravity(Gravity.CENTER);
             Button DoneButton=(Button)rootView.findViewById(R.id.done_button);
             DoneButton.setTypeface(typeface);
-            DoneButton.setOnClickListener(new View.OnClickListener(){
+            DoneButton.setOnClickListener(new View.OnClickListener() {
                 String ans1;
                 public void onClick(View dview) {
-                    for (i = 0; i < ques.length; i++) {
-                        j=i+1;
-                        ans1 = t.getText().toString();
-                        if (ans1.equals(ans[i])) {
-                            Toast.makeText(getActivity(),R.string.correcttoast,Toast.LENGTH_SHORT).show();
-                            hView.setText("");
-                            t.setText("");
-                            if(j!=ques.length)
-                                qView.setText(ques[j]);
-                            else {
-                                Intent intent = new Intent(getActivity(), EndActivity.class);
-                                startActivity(intent);
-                            }
-                            break;
+                    ans1 = t.getText().toString();
+                    if (ans1.equals(ans[mcount]) && !(ans1.isEmpty()))
+                    {
+                        mcount++;
+                        Toast.makeText(getActivity(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
+                        hView.setText("");
+                        t.setText("");
+                        if (mcount != ques.length)
+                        qView.setText(ques[mcount]);
+                        else {
+                        Intent intent = new Intent(getActivity(), EndActivity.class);
+                        startActivity(intent);
                         }
+
+                    }
+                    else {
+                        int r= (int)(java.lang.Math.random()*6);
+                        t.setText("");
+                        Toast.makeText(getActivity(),error[r],Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -140,7 +161,7 @@ public class QuestionActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     hView.setGravity(Gravity.CENTER);
-                    hView.setText(hint[j]);
+                    hView.setText(hint[mcount]);
                 }
             });
             return rootView;

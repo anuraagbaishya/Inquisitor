@@ -1,6 +1,8 @@
 package com.appex.android.inquisitor;
 
+import android.content.res.Resources;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -19,7 +21,11 @@ public class AboutActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Resources res = getResources();
+        Drawable drawable = res.getDrawable(R.drawable.bgbar);
         setContentView(R.layout.activity_about);
+        getSupportActionBar().setElevation(0f);
+        getSupportActionBar().setBackgroundDrawable(drawable);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())

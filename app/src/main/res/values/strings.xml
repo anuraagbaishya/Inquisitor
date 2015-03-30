@@ -9,7 +9,6 @@
     <string name="text4">©2015  Anuraag Baishya</string>
     <string name="text5">Licensed under Apache License 2.0</string>
     <string name="welcometext">WELCOME TO INQUISITOR</string>
-    <string name="weltext2">Tap Start to continue</string>
     <string name="fontcourtesy">Font Used: 1942 Report by Johan Holmdahl</string>
     <string name="end">"Inquisitor salutes you O' Wise One!</string>
     <string name="action_settings">Settings</string>
@@ -17,25 +16,23 @@
 
     <color name="text2">#ff6600</color>
     <color name="text">#5d5d5d</color>
+    <color name="darkorange">#ff7a22</color>
 
 
     <string name="done_button">DONE</string>
     <string name="startbutton">ENTER THE INQUISITOR</string>
     <string name="hintbutton">HINT</string>
     <string name="correcttoast">Correct!</string>
-    <string name="incorrecttoast">Try Again</string>
+    <string name="incorrecttoast">Try Again!</string>
 
     <string name="title_activity_about">Inquisitor 1.0.0</string>
-    <string name="title_activity_question">Inquisitor</string>
+    <string name="title_activity_question"></string>
     <string name="title_activity_appex">AppexActivity</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_start">Inquisitor</string>
 
     <string name="title_activity_strt">StrtActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_end">EndActivity</string>
 
 
