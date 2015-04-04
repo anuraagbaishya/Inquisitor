@@ -38,7 +38,7 @@ public class EndActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_end, container, false);
             TextView eview=(TextView)rootView.findViewById(R.id.endview);
             eview.setGravity(Gravity.CENTER);
-            Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/brotherDeluxe.ttf");
+            Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/Kankin.ttf");
             eview.setTypeface(typeface);
             return rootView;
         }

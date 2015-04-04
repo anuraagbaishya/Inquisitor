@@ -1,8 +1,6 @@
 package com.appex.android.inquisitor;
 
-import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -21,11 +19,7 @@ public class AboutActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Resources res = getResources();
-        Drawable drawable = res.getDrawable(R.drawable.bgbar);
         setContentView(R.layout.activity_about);
-        getSupportActionBar().setElevation(0f);
-        getSupportActionBar().setBackgroundDrawable(drawable);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
@@ -66,7 +60,7 @@ public class AboutActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_about, container, false);
-            Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/1942.ttf");
+            Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/Infinity.ttf");
             TextView text1=(TextView)rootView.findViewById(R.id.textView);
             TextView text2=(TextView)rootView.findViewById(R.id.textView2);
             TextView text3=(TextView)rootView.findViewById(R.id.textView3);
@@ -96,13 +90,29 @@ public class AboutActivity extends ActionBarActivity {
                     Html.fromHtml(
                             "<a href=\"http://www.flaticon.com\">Flaticon</a>")
                     );
+            htext2.setMovementMethod(LinkMovementMethod.getInstance());
             htext2.append(". Flaticon is licensed under ");
             htext2.append(
                     Html.fromHtml(
                             "<a href=\"http://creativecommons.org/licenses/by/3.0/\">CC BY 3.0</a>"
                     )
             );
+            htext.setMovementMethod(LinkMovementMethod.getInstance());
             htext2.setTypeface(typeface);
+            font.append("Fonts used: ");
+            font.append(
+                    Html.fromHtml(
+                            "<a href=\"https://www.behance.net/gallery/Infinity/1126535\">Infinity</a>"
+                    )
+            );
+            font.setMovementMethod(LinkMovementMethod.getInstance());
+            font.append(" and ");
+            font.append(
+                    Html.fromHtml(
+                            "<a href=\"http://fontfabric.com/kankin-free-font/\">Kankin</a>"
+                    )
+            );
+            font.setMovementMethod(LinkMovementMethod.getInstance());
             font.setTypeface(typeface);
             return rootView;
         }

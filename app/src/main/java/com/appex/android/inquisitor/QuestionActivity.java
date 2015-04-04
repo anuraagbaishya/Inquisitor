@@ -1,6 +1,7 @@
 package com.appex.android.inquisitor;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -8,11 +9,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,6 +23,7 @@ import android.widget.Toast;
 
 
 public class QuestionActivity extends ActionBarActivity {
+    public static final String PREFS_FILE = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +33,13 @@ public class QuestionActivity extends ActionBarActivity {
         Drawable drawable = res.getDrawable(R.drawable.bgbar);
         getSupportActionBar().setBackgroundDrawable(drawable);
         getSupportActionBar().setElevation(0f);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,15 +55,20 @@ public class QuestionActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
         if(id== R.id.action_about){
             startActivity(new Intent(this, AboutActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onStop(){
+        SharedPreferences count=getSharedPreferences(PREFS_FILE,0);
+        SharedPreferences.Editor editor= count.edit();
+        editor.putInt("count",PlaceholderFragment.mcount);
+        editor.commit();
+        super.onStop();
+
     }
 
     public static class PlaceholderFragment extends Fragment {
@@ -109,7 +118,8 @@ public class QuestionActivity extends ActionBarActivity {
                 "Just a little more effort."
         };
 
-        int mcount=0;
+        static int mcount=0;
+        String ans1;
 
 
         public PlaceholderFragment() {
@@ -119,19 +129,55 @@ public class QuestionActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_question, container, false);
+            SharedPreferences count=getActivity().getSharedPreferences(PREFS_FILE,0);
+            mcount=count.getInt("count",mcount);
             final EditText t = (EditText) rootView.findViewById(R.id.edittext1);
-            final TextView qView=(TextView)rootView.findViewById(R.id.textviewname);
+            final TextView qView=(TextView)rootView.findViewById(R.id.questionview);
             final TextView hView=(TextView)rootView.findViewById(R.id.hintview);
-            Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/1942.ttf");
+            Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/Infinity.ttf");
             qView.setTypeface(typeface);
             hView.setTypeface(typeface);
-            qView.append(ques[0]);
+            if(mcount<ques.length)
+                qView.append(ques[mcount]);
+            else{
+                Intent intent = new Intent(getActivity(), EndActivity.class);
+                startActivity(intent);
+            }
             t.setTypeface(typeface);
             t.setGravity(Gravity.CENTER);
+            t.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    boolean handled = false;
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        ans1 = t.getText().toString();
+                        if (ans1.equals(ans[mcount]) && !(ans1.isEmpty()))
+                        {
+                            mcount++;
+                            Toast.makeText(getActivity(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
+                            hView.setText("");
+                            t.setText("");
+                            if (mcount != ques.length)
+                                qView.setText(ques[mcount]);
+                            else {
+                                Intent intent = new Intent(getActivity(), EndActivity.class);
+                                startActivity(intent);
+                            }
+
+                        }
+                        else {
+                            int r= (int)(java.lang.Math.random()*6);
+                            t.setText("");
+                            Toast.makeText(getActivity(),error[r],Toast.LENGTH_SHORT).show();
+                        }
+                        handled = true;
+                    }
+                    return handled;
+                }
+            });
             Button DoneButton=(Button)rootView.findViewById(R.id.done_button);
             DoneButton.setTypeface(typeface);
             DoneButton.setOnClickListener(new View.OnClickListener() {
-                String ans1;
                 public void onClick(View dview) {
                     ans1 = t.getText().toString();
                     if (ans1.equals(ans[mcount]) && !(ans1.isEmpty()))

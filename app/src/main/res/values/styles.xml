@@ -2,7 +2,12 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-
     </style>
-
+    <style name="Dialogtheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/text2</item>
+        <item name="colorPrimaryDark">@color/text2</item>
+        <item name="colorAccent">@color/text2</item>
+        <item name="background">@drawable/bg</item>
+        <item name="windowActionBar">false</item>
+    </style>
 </resources>

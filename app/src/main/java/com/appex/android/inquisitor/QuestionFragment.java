@@ -32,7 +32,7 @@ public class QuestionFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_question, container, false);
         Button StartButton = (Button) rootView.findViewById(R.id.startbutton);
-        Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/brotherDeluxe.ttf");
+        Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/Kankin.ttf");
         TextView View=(TextView)rootView.findViewById(R.id.welcomemsg);
         View.setTypeface(typeface);
         StartButton.setTypeface(typeface);

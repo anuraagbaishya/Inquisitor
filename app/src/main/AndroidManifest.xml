@@ -9,11 +9,11 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_start" >
+            android:label="@string/title_activity_start">
         </activity>
         <activity
             android:name=".AboutActivity"
-            android:label="@string/title_activity_about"
+            android:theme="@style/Dialogtheme"
             android:parentActivityName=".QuestionActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

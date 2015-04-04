@@ -9,7 +9,7 @@
     <string name="text4">©2015  Anuraag Baishya</string>
     <string name="text5">Licensed under Apache License 2.0</string>
     <string name="welcometext">WELCOME TO INQUISITOR</string>
-    <string name="fontcourtesy">Font Used: 1942 Report by Johan Holmdahl</string>
+    <string name="fontcourtesy">Fonts: Infinity by Tarin Yuangtrakul</string>
     <string name="end">"Inquisitor salutes you O' Wise One!</string>
     <string name="action_settings">Settings</string>
     <string name="about">About</string>
@@ -24,6 +24,7 @@
     <string name="hintbutton">HINT</string>
     <string name="correcttoast">Correct!</string>
     <string name="incorrecttoast">Try Again!</string>
+    <string name="send_to">Share using:</string>
 
     <string name="title_activity_about">Inquisitor 1.0.0</string>
     <string name="title_activity_question"></string>
