@@ -31,18 +31,16 @@ public class QuestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_question, container, false);
-        Button StartButton = (Button) rootView.findViewById(R.id.startbutton);
+        Button startButton = (Button) rootView.findViewById(R.id.startbutton);
         Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/Kankin.ttf");
         TextView View=(TextView)rootView.findViewById(R.id.welcomemsg);
         View.setTypeface(typeface);
-        StartButton.setTypeface(typeface);
-
-        StartButton.setOnClickListener(new View.OnClickListener() {
+        startButton.setTypeface(typeface);
+        startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), QuestionActivity.class);
                 startActivity(intent);
-
             }
         });
 
