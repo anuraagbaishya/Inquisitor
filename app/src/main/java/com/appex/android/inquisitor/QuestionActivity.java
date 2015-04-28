@@ -151,7 +151,8 @@ public class QuestionActivity extends ActionBarActivity {
                     boolean handled = false;
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         ans1 = t.getText().toString();
-                        if (ans1.equals(ans[mcount]) && !(ans1.isEmpty()))
+                        String ans2=ans1.trim();
+                        if (ans2.equals(ans[mcount]) && !(ans2.isEmpty()))
                         {
                             mcount++;
                             Toast.makeText(getActivity(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
@@ -180,7 +181,7 @@ public class QuestionActivity extends ActionBarActivity {
             DoneButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View dview) {
                     ans1 = t.getText().toString();
-                    if (ans1.equals(ans[mcount]) && !(ans1.isEmpty()))
+                    if (ans1.trim().equals(ans[mcount]) && !(ans1.isEmpty()))
                     {
                         mcount++;
                         Toast.makeText(getActivity(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
