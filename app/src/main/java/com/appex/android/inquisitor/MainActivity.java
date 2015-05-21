@@ -14,7 +14,7 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().hide();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new QuestionFragment())
+                    .add(R.id.container, new MainFragment())
                     .commit();
         }
     }
