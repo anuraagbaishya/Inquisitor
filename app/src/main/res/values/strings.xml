@@ -19,12 +19,13 @@
 
     <string name="done_button">DONE</string>
     <string name="hintbutton">HINT</string>
+    <string name="googlebutton">GOOGLE</string>
     <string name="correcttoast">Correct!</string>
     <string name="incorrecttoast">Try Again!</string>
     <string name="send_to">Share using:</string>
 
     <string name="title_activity_about">Inquisitor 1.0.0</string>
-    <string name="title_activity_question"></string>
+    <string name="title_activity_question"/>
     <string name="title_activity_appex">AppexActivity</string>
 
     <string name="title_activity_main">MainActivity</string>
@@ -32,6 +33,10 @@
 
     <string name="title_activity_strt">StrtActivity</string>
     <string name="title_activity_end">EndActivity</string>
+    <string name="title_activity_google">GoogleActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+
 
 
 

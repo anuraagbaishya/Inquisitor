@@ -151,9 +151,8 @@ public class QuestionActivity extends ActionBarActivity {
                     boolean handled = false;
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         ans1 = t.getText().toString();
-                        String ans2=ans1.trim();
-                        if (ans2.equals(ans[mcount]) && !(ans2.isEmpty()))
-                        {
+                        String ans2 = ans1.trim();
+                        if (ans2.equals(ans[mcount]) && !(ans2.isEmpty())) {
                             mcount++;
                             Toast.makeText(getActivity(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
                             hView.setText("");
@@ -165,11 +164,10 @@ public class QuestionActivity extends ActionBarActivity {
                                 startActivity(intent);
                             }
 
-                        }
-                        else {
-                            int r= (int)(java.lang.Math.random()*6);
+                        } else {
+                            int r = (int) (java.lang.Math.random() * 6);
                             t.setText("");
-                            Toast.makeText(getActivity(),error[r],Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), error[r], Toast.LENGTH_SHORT).show();
                         }
                         handled = true;
                     }
@@ -181,24 +179,22 @@ public class QuestionActivity extends ActionBarActivity {
             DoneButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View dview) {
                     ans1 = t.getText().toString();
-                    if (ans1.trim().equals(ans[mcount]) && !(ans1.isEmpty()))
-                    {
+                    if (ans1.trim().equals(ans[mcount]) && !(ans1.isEmpty())) {
                         mcount++;
                         Toast.makeText(getActivity(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
                         hView.setText("");
                         t.setText("");
                         if (mcount != ques.length)
-                        qView.setText(ques[mcount]);
+                            qView.setText(ques[mcount]);
                         else {
-                        Intent intent = new Intent(getActivity(), EndActivity.class);
-                        startActivity(intent);
+                            Intent intent = new Intent(getActivity(), EndActivity.class);
+                            startActivity(intent);
                         }
 
-                    }
-                    else {
-                        int r= (int)(java.lang.Math.random()*6);
+                    } else {
+                        int r = (int) (java.lang.Math.random() * 6);
                         t.setText("");
-                        Toast.makeText(getActivity(),error[r],Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), error[r], Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -209,6 +205,15 @@ public class QuestionActivity extends ActionBarActivity {
                 public void onClick(View v) {
                     hView.setGravity(Gravity.CENTER);
                     hView.setText(hint[mcount]);
+                }
+            });
+            Button GoogleButton=(Button)rootView.findViewById(R.id.googlebutton);
+            GoogleButton.setTypeface(typeface);
+            GoogleButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    Intent intent=new Intent(getActivity(),GoogleActivity.class);
+                    startActivity(intent);
                 }
             });
             return rootView;
