@@ -6,8 +6,26 @@
     android:layout_height="match_parent"
     android:background="@drawable/inquisitorsplx"
     tools:context=".MainActivity">
-
-
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:id="@+id/levelView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10pt"
+            android:textColor="@color/text"/>
+        <TextView
+            android:id="@+id/totAttempt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10pt"
+            android:layout_toRightOf="@id/levelView"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/text"/>
+    </RelativeLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -14,8 +14,8 @@
     <string name="about">About</string>
     <string name="enter">ENTER THE INQUISITOR</string>
 
-
-
+    <string name="sharemsg">Hi! I\'m using this app called Inquisitor. I think you should try it!</string>
+    <string name="sendmsg">Share message via:</string>
 
     <string name="done_button">DONE</string>
     <string name="hintbutton">HINT</string>
@@ -36,6 +36,7 @@
     <string name="title_activity_google">GoogleActivity</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_share">ShareActivity</string>
 
 
 

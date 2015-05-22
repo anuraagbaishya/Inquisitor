@@ -45,6 +45,22 @@
                 android:layout_below="@+id/edittext1"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true" />
+            <TextView
+                android:id="@+id/attemptview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12pt"
+                android:textColor="@color/text2"
+                android:layout_marginTop="75dp"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:id="@+id/levelview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16pt"
+                android:textColor="@color/text2"
+                android:layout_marginTop="25dp"
+                android:layout_centerHorizontal="true"/>
             <Button
                 android:id="@+id/done_button"
                 android:textSize="14pt"
@@ -69,16 +85,6 @@
                 android:layout_marginTop="14dp"
                 android:layout_below="@+id/hintview"
               />
-
-            <TextView
-                android:id="@+id/attemptview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text2"
-                android:textSize="10pt"
-                android:layout_marginTop="75dp"
-                android:layout_alignLeft="@+id/done_button"
-                android:layout_alignStart="@+id/done_button"
             />
         </RelativeLayout>
     </ScrollView>

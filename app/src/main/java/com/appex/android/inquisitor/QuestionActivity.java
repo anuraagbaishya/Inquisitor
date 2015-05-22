@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 
 public class QuestionActivity extends ActionBarActivity {
     public static final String PREFS_FILE = "MyPrefsFile";
@@ -58,14 +60,25 @@ public class QuestionActivity extends ActionBarActivity {
         if(id== R.id.action_about){
             startActivity(new Intent(this, AboutActivity.class));
         }
+        if(id==R.id.action_share){
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.sharemsg));
+            intent=Intent.createChooser(intent,getString(R.string.sendmsg));
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
     @Override
     public void onStop(){
         SharedPreferences count=getSharedPreferences(PREFS_FILE,0);
+        SharedPreferences attempt=getSharedPreferences(PREFS_FILE, 1);
+        SharedPreferences totattempt=getSharedPreferences(PREFS_FILE, 2);
         SharedPreferences.Editor editor= count.edit();
         editor.putInt("count",PlaceholderFragment.mcount);
+        editor.putInt("attempt",PlaceholderFragment.mattempt);
+        editor.putInt("totattempt",PlaceholderFragment.mtotattempt);
         editor.commit();
         super.onStop();
 
@@ -119,6 +132,8 @@ public class QuestionActivity extends ActionBarActivity {
         };
 
         static int mcount=0;
+        static int mattempt=0;
+        static int mtotattempt=0;
         String ans1;
 
 
@@ -129,16 +144,28 @@ public class QuestionActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.activity_question, container, false);
-            SharedPreferences count=getActivity().getSharedPreferences(PREFS_FILE,0);
+            SharedPreferences count=getActivity().getSharedPreferences(PREFS_FILE, 0);
+            SharedPreferences attempt=getActivity().getSharedPreferences(PREFS_FILE,1);
+            SharedPreferences totattempt=getActivity().getSharedPreferences(PREFS_FILE, 2);
             mcount=count.getInt("count",mcount);
+            mattempt=attempt.getInt("attempt",mattempt);
+            mtotattempt=totattempt.getInt("totattempt",mtotattempt);
             final EditText t = (EditText) rootView.findViewById(R.id.edittext1);
             final TextView qView=(TextView)rootView.findViewById(R.id.questionview);
             final TextView hView=(TextView)rootView.findViewById(R.id.hintview);
+            final TextView aView=(TextView)rootView.findViewById(R.id.attemptview);
+            final TextView lView=(TextView)rootView.findViewById(R.id.levelview);
             Typeface typeface=Typeface.createFromAsset(getActivity().getAssets(),"fonts/Infinity.ttf");
             qView.setTypeface(typeface);
             hView.setTypeface(typeface);
-            if(mcount<ques.length)
+            aView.setTypeface(typeface);
+            lView.setTypeface(typeface);
+            if(mattempt!=0)
+                aView.setText("Attempts: "+mattempt);
+            if(mcount<ques.length) {
                 qView.append(ques[mcount]);
+                lView.setText("Level: " + mcount);
+            }
             else{
                 Intent intent = new Intent(getActivity(), EndActivity.class);
                 startActivity(intent);
@@ -151,14 +178,18 @@ public class QuestionActivity extends ActionBarActivity {
                     boolean handled = false;
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         ans1 = t.getText().toString();
-                        String ans2 = ans1.trim();
-                        if (ans2.equals(ans[mcount]) && !(ans2.isEmpty())) {
+                        if (ans1.trim().equalsIgnoreCase(ans[mcount]) && !(ans1.isEmpty())) {
                             mcount++;
+                            mtotattempt+=(mattempt+1);
+                            mattempt=0;
+                            aView.setText("");
                             Toast.makeText(getActivity(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
                             hView.setText("");
                             t.setText("");
-                            if (mcount != ques.length)
+                            if (mcount != ques.length) {
                                 qView.setText(ques[mcount]);
+                                lView.setText("Level: " + mcount);
+                            }
                             else {
                                 Intent intent = new Intent(getActivity(), EndActivity.class);
                                 startActivity(intent);
@@ -168,6 +199,8 @@ public class QuestionActivity extends ActionBarActivity {
                             int r = (int) (java.lang.Math.random() * 6);
                             t.setText("");
                             Toast.makeText(getActivity(), error[r], Toast.LENGTH_SHORT).show();
+                            mattempt++;
+                            aView.setText("Attempts: "+mattempt);
                         }
                         handled = true;
                     }
@@ -179,13 +212,15 @@ public class QuestionActivity extends ActionBarActivity {
             DoneButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View dview) {
                     ans1 = t.getText().toString();
-                    if (ans1.trim().equals(ans[mcount]) && !(ans1.isEmpty())) {
+                    if (ans1.trim().equalsIgnoreCase(ans[mcount]) && !(ans1.isEmpty())) {
                         mcount++;
                         Toast.makeText(getActivity(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
                         hView.setText("");
                         t.setText("");
-                        if (mcount != ques.length)
+                        if (mcount != ques.length) {
                             qView.setText(ques[mcount]);
+                            lView.setText("Level: " + mcount);
+                        }
                         else {
                             Intent intent = new Intent(getActivity(), EndActivity.class);
                             startActivity(intent);
