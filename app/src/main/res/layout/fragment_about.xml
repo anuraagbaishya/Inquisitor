@@ -92,6 +92,17 @@
             android:layout_below="@+id/hyperlink2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+        <Button
+            android:id="@+id/quesButton"
+            android:background="@android:color/transparent"
+            android:text="@string/quesButton"
+            android:textSize="11pt"
+            android:textColor="@color/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 </ScrollView>
 

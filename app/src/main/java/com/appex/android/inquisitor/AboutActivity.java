@@ -1,5 +1,6 @@
 package com.appex.android.inquisitor;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -89,7 +91,7 @@ public class AboutActivity extends ActionBarActivity {
             htext2.append(
                     Html.fromHtml(
                             "<a href=\"http://www.flaticon.com\">Flaticon</a>")
-                    );
+            );
             htext2.setMovementMethod(LinkMovementMethod.getInstance());
             htext2.append(". Flaticon is licensed under ");
             htext2.append(
@@ -114,7 +116,17 @@ public class AboutActivity extends ActionBarActivity {
             );
             font.setMovementMethod(LinkMovementMethod.getInstance());
             font.setTypeface(typeface);
+            Button qButton=(Button)rootView.findViewById(R.id.quesButton);
+            qButton.setTypeface(typeface);
+            qButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), QuesDispActivity.class);
+                    startActivity(intent);
+                }
+            });
             return rootView;
         }
+
     }
 }
