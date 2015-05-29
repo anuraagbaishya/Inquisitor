@@ -180,7 +180,7 @@ public class QuestionActivity extends ActionBarActivity {
                         ans1 = t.getText().toString();
                         if (ans1.trim().equalsIgnoreCase(ans[mcount]) && !(ans1.isEmpty())) {
                             mcount++;
-                            mtotattempt+=(mattempt+1);
+                            mtotattempt++;
                             mattempt=0;
                             aView.setText("");
                             Toast.makeText(getActivity(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
@@ -200,6 +200,7 @@ public class QuestionActivity extends ActionBarActivity {
                             t.setText("");
                             Toast.makeText(getActivity(), error[r], Toast.LENGTH_SHORT).show();
                             mattempt++;
+                            mtotattempt++;
                             aView.setText("Attempts: "+mattempt);
                         }
                         handled = true;
@@ -214,6 +215,8 @@ public class QuestionActivity extends ActionBarActivity {
                     ans1 = t.getText().toString();
                     if (ans1.trim().equalsIgnoreCase(ans[mcount]) && !(ans1.isEmpty())) {
                         mcount++;
+                        mtotattempt++;
+                        mattempt=0;
                         Toast.makeText(getActivity(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
                         hView.setText("");
                         t.setText("");
@@ -229,6 +232,8 @@ public class QuestionActivity extends ActionBarActivity {
                     } else {
                         int r = (int) (java.lang.Math.random() * 6);
                         t.setText("");
+                        mattempt++;
+                        mtotattempt++;
                         Toast.makeText(getActivity(), error[r], Toast.LENGTH_SHORT).show();
                     }
                 }
