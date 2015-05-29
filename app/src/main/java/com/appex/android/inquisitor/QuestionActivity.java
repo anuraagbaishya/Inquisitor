@@ -164,7 +164,7 @@ public class QuestionActivity extends ActionBarActivity {
                 aView.setText("Attempts: "+mattempt);
             if(mcount<ques.length) {
                 qView.append(ques[mcount]);
-                lView.setText("Level: " + mcount);
+                lView.setText("Level: " + (mcount+1));
             }
             else{
                 Intent intent = new Intent(getActivity(), EndActivity.class);
@@ -188,7 +188,7 @@ public class QuestionActivity extends ActionBarActivity {
                             t.setText("");
                             if (mcount != ques.length) {
                                 qView.setText(ques[mcount]);
-                                lView.setText("Level: " + mcount);
+                                lView.setText("Level: " + (mcount+1));
                             }
                             else {
                                 Intent intent = new Intent(getActivity(), EndActivity.class);
@@ -219,7 +219,7 @@ public class QuestionActivity extends ActionBarActivity {
                         t.setText("");
                         if (mcount != ques.length) {
                             qView.setText(ques[mcount]);
-                            lView.setText("Level: " + mcount);
+                            lView.setText("Level: " + (mcount+1));
                         }
                         else {
                             Intent intent = new Intent(getActivity(), EndActivity.class);

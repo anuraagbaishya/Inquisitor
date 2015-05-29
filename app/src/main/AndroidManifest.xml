@@ -46,6 +46,10 @@
             android:name=".QuesDispActivity"
             android:label="@string/title_activity_ques_disp" >
         </activity>
+        <provider
+            android:name=".QuestionsProvider"
+            android:authorities="com.appex.android.inquisitor.QuestionsProvider">
+        </provider>
     </application>
 
 </manifest>

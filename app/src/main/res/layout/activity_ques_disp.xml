@@ -7,9 +7,11 @@
     android:id="@+id/container"
     tools:context="com.appex.android.inquisitor.QuesDispActivity"
     android:background="@drawable/bg">
-    <ListView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lvItems"/>
+        android:textColor="@color/text2"
+        android:textSize="12pt"
+        android:id="@+id/qview"/>
 
 </RelativeLayout>
