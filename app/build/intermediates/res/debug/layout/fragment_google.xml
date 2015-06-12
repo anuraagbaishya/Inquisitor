@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.appex.android.inquisitor.GoogleActivityFragment">
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/webView"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentTop="false">
+    </WebView>
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible"
+        style="?android:attr/progressBarStyleHorizontal" />
+</RelativeLayout>
+<!-- From: file:/D:/AndroidStudioProjects/Inquisitor/app/src/main/res/layout/fragment_google.xml -->

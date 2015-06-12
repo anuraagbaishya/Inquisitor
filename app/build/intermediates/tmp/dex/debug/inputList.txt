@@ -1,0 +1,5 @@
+D:\AndroidStudioProjects\Inquisitor\app\build\intermediates\classes\debug
+D:\AndroidStudioProjects\Inquisitor\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-fabcf4fbb8ff1d6e184813d88565fc8f3df7c6f5.jar
+D:\AndroidStudioProjects\Inquisitor\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-bb5afbda8034ea20e5cb1fe693ebccfb97646d16.jar
+D:\AndroidStudioProjects\Inquisitor\app\build\intermediates\pre-dexed\debug\classes-cc1ce282e74d1a408ea7285efde0bb6d40a5a572.jar
+D:\AndroidStudioProjects\Inquisitor\app\build\intermediates\pre-dexed\debug\classes-331e1740c4f29f806e58d4efaf3fad1619f1316e.jar
