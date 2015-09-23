@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.appex.android.inquisitor.database.DBHelper;
 import com.appex.android.inquisitor.model.Question;
 import com.appex.android.inquisitor.resources.Constants;
 
@@ -32,17 +33,24 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 
 public class QuestionActivity extends AppCompatActivity {
     public static final String PREFS_FILE = "MyPrefsFile";
     public static int mcount=0;
     public static int mattempt=0;
     public static int mtotattempt=0;
+    ArrayList<Question> mQuestionList;
+    DBHelper dbHelper;
     String ans1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
+        dbHelper=new DBHelper(getApplicationContext());
+        mQuestionList=new ArrayList<>();
+        mQuestionList.addAll(dbHelper.getAllQuestions());
         final String questions[]=Constants.QUESTIONS;
         final String answers[]=Constants.ANSWERS;
         final String hint[]=Constants.HINT;
@@ -213,6 +221,8 @@ public class QuestionActivity extends AppCompatActivity {
         JsonObjectRequest quesRequest = new JsonObjectRequest(Request.Method.GET, Constants.URL_QUESTIONS, (String) null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                mQuestionList.clear();
+
                 Log.d("Questions", response.toString());
                 try {
                     JSONArray data = response.getJSONArray("data");
@@ -221,6 +231,9 @@ public class QuestionActivity extends AppCompatActivity {
                         question.setQuestion(data.getJSONObject(i).getString("question"));
                         question.setAnswer(data.getJSONObject(i).getString("answer"));
                         question.setHint(data.getJSONObject(i).getString("hint"));
+                        dbHelper.insertQuestion(question);
+                        mQuestionList.add(question);
+                        Log.d("Inserted",data.getJSONObject(i).getString("question"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

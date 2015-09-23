@@ -21,6 +21,8 @@ public final class R {
         public static final int abc_slide_out_top=0x7f040009;
         public static final int animation_slide_up_appear=0x7f04000a;
         public static final int animation_slide_up_disappear=0x7f04000b;
+        public static final int slide_in_right=0x7f04000c;
+        public static final int slide_out_left=0x7f04000d;
     }
     public static final class attr {
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
