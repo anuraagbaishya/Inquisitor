@@ -18,24 +18,24 @@
             android:textSize="16pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView" />
+            android:id="@+id/about_text_view" />
         <TextView
             android:text="@string/text2"
             android:textColor="@color/text2"
             android:textSize="14pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/about_text_view"
             android:layout_marginTop="34dp"
-            android:id="@+id/textView5" />
+            android:id="@+id/title_text_view" />
         <TextView
             android:text="@string/text3"
             android:textColor="@color/text2"
             android:textSize="11pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView3"
-            android:layout_below="@+id/textView5"
+            android:id="@+id/developer_text_view"
+            android:layout_below="@+id/title_text_view"
             android:layout_marginTop="34dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -45,40 +45,30 @@
             android:textSize="11pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView4"
+            android:id="@+id/copyright_text_view"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView3"/>
+            android:layout_below="@+id/developer_text_view"/>
         <TextView
-            android:text="@string/text5"
-            android:textSize="11pt"
-            android:textColor="@color/text2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView4"/>
-        <TextView
-            android:id="@+id/hyperlink"
+            android:id="@+id/github_link_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text2"
             android:textColorLink="@color/text2"
             android:textSize="11pt"
             android:layout_marginTop="34dp"
-            android:layout_below="@+id/textView2"
+            android:layout_below="@+id/copyright_text_view"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
         <TextView
-            android:id="@+id/hyperlink2"
+            android:id="@+id/icon_courtesy_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text2"
             android:textColorLink="@color/text2"
             android:textSize="11pt"
             android:layout_marginTop="34dp"
-            android:layout_below="@+id/hyperlink"
+            android:layout_below="@+id/github_link_text_view"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
         <TextView
@@ -86,23 +76,12 @@
             android:layout_height="wrap_content"
             android:textSize="11pt"
             android:textColor="@color/text2"
-            android:id="@+id/fontcourtesy"
+            android:id="@+id/font_courtesy_text_view"
             android:textColorLink="@color/text2"
             android:layout_marginTop="34dp"
-            android:layout_below="@+id/hyperlink2"
+            android:layout_below="@+id/icon_courtesy_text_view"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
-        <Button
-            android:id="@+id/quesButton"
-            android:background="@android:color/transparent"
-            android:text="@string/quesButton"
-            android:textSize="11pt"
-            android:textColor="@color/text2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 </ScrollView>
 

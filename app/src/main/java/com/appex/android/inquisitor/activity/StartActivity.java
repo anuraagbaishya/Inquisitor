@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.appex.android.inquisitor.R;
+import com.appex.android.inquisitor.model.Question;
 
 
 public class StartActivity extends AppCompatActivity {
@@ -19,6 +20,8 @@ public class StartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getIntent().getBooleanExtra("EXIT", false))
+            finish();
         setContentView(R.layout.activity_start);
         final TextView level=(TextView)findViewById(R.id.levelView);
         final TextView totattemptv=(TextView)findViewById(R.id.totAttempt);
@@ -38,13 +41,8 @@ public class StartActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences count=getApplicationContext().getSharedPreferences(PREFS_FILE, 0);
-                SharedPreferences.Editor editor= count.edit();
-                mstartcount++;
-                editor.putInt("count",mstartcount);
-                editor.apply();
-                Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), QuestionActivity.class));
+                overridePendingTransition(R.anim.animation_slide_up_appear,R.anim.animation_slide_up_disappear);
             }
         });
     }

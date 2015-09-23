@@ -12,6 +12,9 @@ apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
+    maven {
+        url "https://jitpack.io"
+    }
 }
 
 
@@ -42,4 +45,6 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
         transitive = true;
     }
+    compile 'com.mcxiaoke.volley:library:1.0.17'
+    compile 'com.github.chipset95:Potato-Library:0.1.4'
 }

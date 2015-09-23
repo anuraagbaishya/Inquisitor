@@ -2,12 +2,11 @@ package com.appex.android.inquisitor.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -18,9 +17,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.appex.android.inquisitor.model.Question;
 import com.appex.android.inquisitor.resources.Constants;
 
 import com.appex.android.inquisitor.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class QuestionActivity extends AppCompatActivity {
@@ -39,6 +49,7 @@ public class QuestionActivity extends AppCompatActivity {
         final String error[]=Constants.ERROR;
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        prepareData();
         SharedPreferences count=getApplicationContext().getSharedPreferences(PREFS_FILE, 0);
         SharedPreferences attempt=getApplicationContext().getSharedPreferences(PREFS_FILE,1);
         SharedPreferences totattempt=getApplicationContext().getSharedPreferences(PREFS_FILE, 2);
@@ -187,10 +198,40 @@ public class QuestionActivity extends AppCompatActivity {
         editor.putInt("count",mcount);
         editor.putInt("attempt",mattempt);
         editor.putInt("totattempt", mtotattempt);
-        editor.commit();
+        editor.apply();
         super.onStop();
 
     }
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this,StartActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+    }
+    public void prepareData() {
+        JsonObjectRequest quesRequest = new JsonObjectRequest(Request.Method.GET, Constants.URL_QUESTIONS, (String) null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d("Questions", response.toString());
+                try {
+                    JSONArray data = response.getJSONArray("data");
+                    for (int i = 0; i < data.length(); i++) {
+                        Question question = new Question();
+                        question.setQuestion(data.getJSONObject(i).getString("question"));
+                        question.setAnswer(data.getJSONObject(i).getString("answer"));
+                        question.setHint(data.getJSONObject(i).getString("hint"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-
+            }
+        });
+        Volley.newRequestQueue(getApplicationContext()).add(quesRequest);
+    }
 }
