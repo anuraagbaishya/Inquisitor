@@ -35,6 +35,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import chipset.potato.Potato;
+
 
 public class QuestionActivity extends AppCompatActivity {
     public static final String PREFS_FILE = "MyPrefsFile";
@@ -42,6 +44,8 @@ public class QuestionActivity extends AppCompatActivity {
     public static int mattempt=0;
     public static int mtotattempt=0;
     ArrayList<Question> mQuestionList;
+    ArrayList<String> answerList;
+    ArrayList<String> hintList;
     DBHelper dbHelper;
     String ans1;
     @Override
@@ -50,6 +54,8 @@ public class QuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_question);
         dbHelper=new DBHelper(getApplicationContext());
         mQuestionList=new ArrayList<>();
+        answerList=new ArrayList<>();
+        hintList=new ArrayList<>();
         mQuestionList.addAll(dbHelper.getAllQuestions());
         final String questions[]=Constants.QUESTIONS;
         final String answers[]=Constants.ANSWERS;
@@ -57,7 +63,9 @@ public class QuestionActivity extends AppCompatActivity {
         final String error[]=Constants.ERROR;
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        prepareData();
+        if(Potato.potate().Utils().isInternetConnected(this)) {
+            prepareData();
+        }
         SharedPreferences count=getApplicationContext().getSharedPreferences(PREFS_FILE, 0);
         SharedPreferences attempt=getApplicationContext().getSharedPreferences(PREFS_FILE,1);
         SharedPreferences totattempt=getApplicationContext().getSharedPreferences(PREFS_FILE, 2);
@@ -92,29 +100,27 @@ public class QuestionActivity extends AppCompatActivity {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     ans1 = answerEditText.getText().toString();
-                    if (ans1.trim().equalsIgnoreCase(answers[mcount]) && !(ans1.isEmpty())) {
+                    if (ans1.trim().equalsIgnoreCase(answerList.get(mcount)) && !(ans1.isEmpty())) {
                         mcount++;
                         mtotattempt++;
-                        mattempt = 0;
-                        attemptTextView.setText("");
+                        mattempt=0;
                         Toast.makeText(getApplicationContext(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
                         hintTextView.setText("");
                         answerEditText.setText("");
-                        if (mcount != questions.length) {
-                            questionTextView.setText(questions[mcount]);
-                            levelTextView.setText("Level: " + (mcount + 1));
-                        } else {
-                            Intent intent = new Intent(getApplicationContext(), EndActivity.class);
-                            startActivity(intent);
-                        }
-
+                        if(mcount<mQuestionList.size())
+                            for(Question question : mQuestionList) {
+                                if (question.getQuestionNo() == mcount + 1)
+                                    questionTextView.setText(question.getQuestion());
+                                levelTextView.setText("Level: " + (mcount + 1));
+                            }
+                        else
+                            startActivity(new Intent(getApplicationContext(),EndActivity.class));
                     } else {
                         int r = (int) (java.lang.Math.random() * 6);
                         answerEditText.setText("");
-                        Toast.makeText(getApplicationContext(), error[r], Toast.LENGTH_SHORT).show();
                         mattempt++;
                         mtotattempt++;
-                        attemptTextView.setText("Attempts: " + mattempt);
+                        Toast.makeText(getApplicationContext(), error[r], Toast.LENGTH_SHORT).show();
                     }
                     handled = true;
                 }
@@ -126,22 +132,21 @@ public class QuestionActivity extends AppCompatActivity {
         DoneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View dview) {
                 ans1 = answerEditText.getText().toString();
-                if (ans1.trim().equalsIgnoreCase(answers[mcount]) && !(ans1.isEmpty())) {
+                if (ans1.trim().equalsIgnoreCase(answerList.get(mcount)) && !(ans1.isEmpty())) {
                     mcount++;
                     mtotattempt++;
                     mattempt=0;
                     Toast.makeText(getApplicationContext(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
                     hintTextView.setText("");
                     answerEditText.setText("");
-                    if (mcount != questions.length) {
-                        questionTextView.setText(questions[mcount]);
-                        levelTextView.setText("Level: " + (mcount+1));
+                    if(mcount<mQuestionList.size())
+                    for(Question question : mQuestionList) {
+                        if (question.getQuestionNo() == mcount + 1)
+                            questionTextView.setText(question.getQuestion());
+                            levelTextView.setText("Level: " + (mcount + 1));
                     }
-                    else {
-                        Intent intent = new Intent(getApplicationContext(), EndActivity.class);
-                        startActivity(intent);
-                    }
-
+                    else
+                        startActivity(new Intent(getApplicationContext(),EndActivity.class));
                 } else {
                     int r = (int) (java.lang.Math.random() * 6);
                     answerEditText.setText("");
@@ -228,11 +233,14 @@ public class QuestionActivity extends AppCompatActivity {
                     JSONArray data = response.getJSONArray("data");
                     for (int i = 0; i < data.length(); i++) {
                         Question question = new Question();
+                        question.setQuestionNo(data.getJSONObject(i).getInt("qno"));
                         question.setQuestion(data.getJSONObject(i).getString("question"));
                         question.setAnswer(data.getJSONObject(i).getString("answer"));
                         question.setHint(data.getJSONObject(i).getString("hint"));
                         dbHelper.insertQuestion(question);
                         mQuestionList.add(question);
+                        answerList.add(data.getJSONObject(i).getString("answer"));
+                        hintList.add(data.getJSONObject(i).getString("hint"));
                         Log.d("Inserted",data.getJSONObject(i).getString("question"));
                     }
                 } catch (JSONException e) {

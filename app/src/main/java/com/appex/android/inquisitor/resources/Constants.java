@@ -4,7 +4,7 @@ package com.appex.android.inquisitor.resources;
  * Created by anuraag on 20/9/15.
  */
 public class Constants {
-    public static final String URL_QUESTIONS="https://api.myjson.com/bins/4jj34";
+    public static final String URL_QUESTIONS="https://api.myjson.com/bins/1ul70";
     public static final String QUESTIONS[]={
             "FD,RT,LT,BK,Turtle.",
             "Sixth Sense on Paper.",
