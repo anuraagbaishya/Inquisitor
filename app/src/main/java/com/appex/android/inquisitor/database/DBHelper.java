@@ -30,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        db.execSQL("CREATE TABLE IF  NOT EXISTS " + QUESTION_TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," + Q_NO +" INTEGER,"
+        db.execSQL("CREATE TABLE IF  NOT EXISTS " + QUESTION_TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," + Q_NO + " INTEGER,"
                 + QUESTION + " TEXT," + ANSWER + " TEXT," + HINT + " TEXT);");
     }
     @Override
@@ -55,6 +55,42 @@ public class DBHelper extends SQLiteOpenHelper {
             contentValues.put(HINT,question.getHint());
             db.insert(QUESTION_TABLE_NAME, null, contentValues);
         }
+    }
+    public ArrayList<String> getAnswers(){
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor rows=db.rawQuery("SELECT * FROM " + QUESTION_TABLE_NAME, null);
+        ArrayList<String> answers=new ArrayList<>();
+        if(rows!=null){
+            for(int i=0;i<rows.getCount();i++){
+                rows.moveToPosition(i);
+                answers.add(rows.getString(3));
+            }
+        }
+        return answers;
+    }
+    public ArrayList<String> getQuestions(){
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor rows=db.rawQuery("SELECT * FROM " + QUESTION_TABLE_NAME, null);
+        ArrayList<String> questions=new ArrayList<>();
+        if(rows!=null){
+            for(int i=0;i<rows.getCount();i++){
+                rows.moveToPosition(i);
+                questions.add(rows.getString(2));
+            }
+        }
+        return questions;
+    }
+    public ArrayList<String> getHints(){
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor rows=db.rawQuery("SELECT * FROM " + QUESTION_TABLE_NAME, null);
+        ArrayList<String> hints=new ArrayList<>();
+        if(rows!=null){
+            for(int i=0;i<rows.getCount();i++){
+                rows.moveToPosition(i);
+                hints.add(rows.getString(4));
+            }
+        }
+        return hints;
     }
     public ArrayList<Question> getAllQuestions() {
         SQLiteDatabase db = this.getReadableDatabase();

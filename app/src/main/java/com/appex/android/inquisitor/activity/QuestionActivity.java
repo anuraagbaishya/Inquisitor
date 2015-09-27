@@ -1,5 +1,6 @@
 package com.appex.android.inquisitor.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -43,29 +44,33 @@ public class QuestionActivity extends AppCompatActivity {
     public static int mcount=0;
     public static int mattempt=0;
     public static int mtotattempt=0;
-    ArrayList<Question> mQuestionList;
-    ArrayList<String> answerList;
-    ArrayList<String> hintList;
+    ArrayList<String> mQuestionList;
+    ArrayList<String> mAnswerList;
+    ArrayList<String> mHintList;
+    ArrayList<Question> mQuestionsList;
     DBHelper dbHelper;
+//    ProgressDialog mProgressDialog=new ProgressDialog(this);
     String ans1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // mProgressDialog.setMessage("Loading Questions...");
         setContentView(R.layout.activity_question);
         dbHelper=new DBHelper(getApplicationContext());
         mQuestionList=new ArrayList<>();
-        answerList=new ArrayList<>();
-        hintList=new ArrayList<>();
-        mQuestionList.addAll(dbHelper.getAllQuestions());
-        final String questions[]=Constants.QUESTIONS;
-        final String answers[]=Constants.ANSWERS;
-        final String hint[]=Constants.HINT;
+        mAnswerList=new ArrayList<>();
+        mHintList=new ArrayList<>();
+        mQuestionsList=new ArrayList<>();
         final String error[]=Constants.ERROR;
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if(Potato.potate().Utils().isInternetConnected(this)) {
+            //mProgressDialog.show();
             prepareData();
         }
+        mQuestionList=dbHelper.getQuestions();
+        mAnswerList=dbHelper.getAnswers();
+        mHintList=dbHelper.getHints();
         SharedPreferences count=getApplicationContext().getSharedPreferences(PREFS_FILE, 0);
         SharedPreferences attempt=getApplicationContext().getSharedPreferences(PREFS_FILE,1);
         SharedPreferences totattempt=getApplicationContext().getSharedPreferences(PREFS_FILE, 2);
@@ -84,8 +89,8 @@ public class QuestionActivity extends AppCompatActivity {
         levelTextView.setTypeface(typeface);
         if(mattempt!=0)
             attemptTextView.setText("Attempts: "+mattempt);
-        if(mcount<questions.length) {
-            questionTextView.append(questions[mcount]);
+        if(mcount<mQuestionList.size()) {
+            questionTextView.setText(mQuestionList.get(mcount));
             levelTextView.setText("Level: " + (mcount+1));
         }
         else{
@@ -100,18 +105,16 @@ public class QuestionActivity extends AppCompatActivity {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     ans1 = answerEditText.getText().toString();
-                    if (ans1.trim().equalsIgnoreCase(answerList.get(mcount)) && !(ans1.isEmpty())) {
+                    if (ans1.trim().equalsIgnoreCase(mAnswerList.get(mcount)) && !(ans1.isEmpty())) {
                         mcount++;
                         mtotattempt++;
                         mattempt=0;
                         Toast.makeText(getApplicationContext(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
                         hintTextView.setText("");
                         answerEditText.setText("");
-                        if(mcount<mQuestionList.size())
-                            for(Question question : mQuestionList) {
-                                if (question.getQuestionNo() == mcount + 1)
-                                    questionTextView.setText(question.getQuestion());
-                                levelTextView.setText("Level: " + (mcount + 1));
+                        if(mcount<mQuestionList.size()){
+                            questionTextView.setText(mQuestionList.get(mcount));
+                            levelTextView.setText("Level: " + (mcount + 1));
                             }
                         else
                             startActivity(new Intent(getApplicationContext(),EndActivity.class));
@@ -132,17 +135,15 @@ public class QuestionActivity extends AppCompatActivity {
         DoneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View dview) {
                 ans1 = answerEditText.getText().toString();
-                if (ans1.trim().equalsIgnoreCase(answerList.get(mcount)) && !(ans1.isEmpty())) {
+                if (ans1.trim().equalsIgnoreCase(mAnswerList.get(mcount)) && !(ans1.isEmpty())) {
                     mcount++;
                     mtotattempt++;
                     mattempt=0;
                     Toast.makeText(getApplicationContext(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
                     hintTextView.setText("");
                     answerEditText.setText("");
-                    if(mcount<mQuestionList.size())
-                    for(Question question : mQuestionList) {
-                        if (question.getQuestionNo() == mcount + 1)
-                            questionTextView.setText(question.getQuestion());
+                    if(mcount<mQuestionList.size()){
+                            questionTextView.setText(mQuestionList.get(mcount + 1));
                             levelTextView.setText("Level: " + (mcount + 1));
                     }
                     else
@@ -162,7 +163,7 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 hintTextView.setGravity(Gravity.CENTER);
-                hintTextView.setText(hint[mcount]);
+                hintTextView.setText(mHintList.get(mcount));
             }
         });
         Button GoogleButton=(Button)findViewById(R.id.googlebutton);
@@ -238,12 +239,12 @@ public class QuestionActivity extends AppCompatActivity {
                         question.setAnswer(data.getJSONObject(i).getString("answer"));
                         question.setHint(data.getJSONObject(i).getString("hint"));
                         dbHelper.insertQuestion(question);
-                        mQuestionList.add(question);
-                        answerList.add(data.getJSONObject(i).getString("answer"));
-                        hintList.add(data.getJSONObject(i).getString("hint"));
+                        mQuestionsList.add(question);
                         Log.d("Inserted",data.getJSONObject(i).getString("question"));
                     }
-                } catch (JSONException e) {
+                    //mProgressDialog.dismiss();
+                }
+                catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
