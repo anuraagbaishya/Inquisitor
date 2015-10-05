@@ -27,7 +27,7 @@
         <activity
             android:name="com.appex.android.inquisitor.activity.AboutActivity"
             android:parentActivityName="com.appex.android.inquisitor.activity.QuestionActivity"
-            android:theme="@style/Dialogtheme" >
+            android:theme="@style/DialogTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.QuestionActivity" />

@@ -6,15 +6,15 @@
         <item name="android:colorPrimaryDark">#000000</item>
         <item name="android:colorAccent">#424242</item>
     </style>
-    <style name="Dialogtheme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorPrimary">@color/text2</item>
-        <item name="colorPrimaryDark">@color/text2</item>
-        <item name="colorAccent">@color/text2</item>
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimaryDark">@color/orange</item>
+        <item name="colorAccent">@color/orange</item>
         <item name="background">@drawable/bg</item>
-        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
     <style name="CustomToolbarTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:textColorPrimary">@color/text2</item>
+        <item name="android:textColorPrimary">@color/orange</item>
         <item name="actionMenuTextColor">@color/abc_primary_text_material_light</item>
         <item name="android:textColorSecondary">@color/abc_secondary_text_material_light</item>
     </style>

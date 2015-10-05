@@ -14,14 +14,14 @@
 
         <TextView
             android:text="@string/text"
-            android:textColor="@color/text2"
+            android:textColor="@color/orange"
             android:textSize="16pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/about_text_view" />
         <TextView
             android:text="@string/text2"
-            android:textColor="@color/text2"
+            android:textColor="@color/orange"
             android:textSize="14pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:id="@+id/title_text_view" />
         <TextView
             android:text="@string/text3"
-            android:textColor="@color/text2"
+            android:textColor="@color/orange"
             android:textSize="11pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:layout_alignParentStart="true" />
         <TextView
             android:text="@string/text4"
-            android:textColor="@color/text2"
+            android:textColor="@color/orange"
             android:textSize="11pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,8 +53,8 @@
             android:id="@+id/github_link_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text2"
-            android:textColorLink="@color/text2"
+            android:textColor="@color/orange"
+            android:textColorLink="@color/orange"
             android:textSize="11pt"
             android:layout_marginTop="34dp"
             android:layout_below="@+id/copyright_text_view"
@@ -64,8 +64,8 @@
             android:id="@+id/icon_courtesy_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text2"
-            android:textColorLink="@color/text2"
+            android:textColor="@color/orange"
+            android:textColorLink="@color/orange"
             android:textSize="11pt"
             android:layout_marginTop="34dp"
             android:layout_below="@+id/github_link_text_view"
@@ -75,9 +75,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="11pt"
-            android:textColor="@color/text2"
+            android:textColor="@color/orange"
             android:id="@+id/font_courtesy_text_view"
-            android:textColorLink="@color/text2"
+            android:textColorLink="@color/orange"
             android:layout_marginTop="34dp"
             android:layout_below="@+id/icon_courtesy_text_view"
             android:layout_alignParentLeft="true"
