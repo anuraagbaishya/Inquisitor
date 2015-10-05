@@ -33,8 +33,6 @@ import chipset.potato.Potato;
 
 
 public class StartActivity extends AppCompatActivity {
-    public static final String PREFS_FILE = "PrefsFile";
-    static int mstartcount=0;
     public static ArrayList<Question> mQuestionsList;
     public static DBHelper dbHelper;
     public static ProgressDialog mProgressDialog;
@@ -56,12 +54,10 @@ public class StartActivity extends AppCompatActivity {
         startButton.setTypeface(typeface);
         level.setTypeface(typeface);
         totattemptv.setTypeface(typeface);
-        SharedPreferences startcount = getApplicationContext().getSharedPreferences(PREFS_FILE, 0);
         SharedPreferences count = getApplicationContext().getSharedPreferences(QuestionActivity.PREFS_FILE, 0);
         SharedPreferences totattempt = getApplicationContext().getSharedPreferences(QuestionActivity.PREFS_FILE, 2);
         int mcount = count.getInt("count", QuestionActivity.mcount);
         int mtotattempt = totattempt.getInt("totattempt", QuestionActivity.mTotalAttempt);
-        mstartcount = startcount.getInt("count", mstartcount);
         level.setText("Levels Complete: " + mcount);
         totattemptv.setText("Attempts: " + mtotattempt);
         if (dbHelper.getAllQuestions().size() == 0) {
