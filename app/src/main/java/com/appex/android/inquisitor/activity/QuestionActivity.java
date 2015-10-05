@@ -1,5 +1,7 @@
 package com.appex.android.inquisitor.activity;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -28,6 +30,7 @@ import com.appex.android.inquisitor.model.Question;
 import com.appex.android.inquisitor.resources.Constants;
 
 import com.appex.android.inquisitor.R;
+import com.appex.android.inquisitor.resources.UpdateQuestions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,14 +38,20 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import chipset.potato.Potato;
+
 
 public class QuestionActivity extends AppCompatActivity {
     public static final String PREFS_FILE = "MyPrefsFile";
     public static int mcount=0;
-    public static int mattempt=0;
-    public static int mtotattempt=0;
-    ArrayList<Question> mQuestionList;
-    DBHelper dbHelper;
+    public static int mAttempt=0;
+    public static int mTotalAttempt=0;
+    public static ArrayList<String> mQuestionList;
+    ArrayList<String> mAnswerList;
+    ArrayList<String> mHintList;
+    public static ArrayList<Question> mQuestionsList;
+    public static DBHelper dbHelper;
+    public static Context mContext;
     String ans1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,34 +59,40 @@ public class QuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_question);
         dbHelper=new DBHelper(getApplicationContext());
         mQuestionList=new ArrayList<>();
-        mQuestionList.addAll(dbHelper.getAllQuestions());
-        final String questions[]=Constants.QUESTIONS;
-        final String answers[]=Constants.ANSWERS;
-        final String hint[]=Constants.HINT;
+        mAnswerList=new ArrayList<>();
+        mHintList=new ArrayList<>();
+        mQuestionsList=new ArrayList<>();
         final String error[]=Constants.ERROR;
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        prepareData();
+//        if (dbHelper.getAllQuestions().size() != 0) {
+//            if (Potato.potate().Utils().isInternetConnected(this)) {
+//                UpdateQuestions updateQuestions = new UpdateQuestions();
+//                updateQuestions.execute((String) null);
+//            }
+//        }
+        mQuestionList=dbHelper.getQuestions();
+        mAnswerList=dbHelper.getAnswers();
+        mHintList=dbHelper.getHints();
         SharedPreferences count=getApplicationContext().getSharedPreferences(PREFS_FILE, 0);
-        SharedPreferences attempt=getApplicationContext().getSharedPreferences(PREFS_FILE,1);
+        final SharedPreferences attempt=getApplicationContext().getSharedPreferences(PREFS_FILE,1);
         SharedPreferences totattempt=getApplicationContext().getSharedPreferences(PREFS_FILE, 2);
         mcount=count.getInt("count",mcount);
-        mattempt=attempt.getInt("attempt",mattempt);
-        mtotattempt=totattempt.getInt("totattempt",mtotattempt);
-        final EditText answerEditText = (EditText)findViewById(R.id.edittext1);
-        final TextView questionTextView=(TextView)findViewById(R.id.questionview);
-        final TextView hintTextView=(TextView)findViewById(R.id.hintview);
-        final TextView attemptTextView=(TextView)findViewById(R.id.attemptview);
-        final TextView levelTextView=(TextView)findViewById(R.id.levelview);
+        mAttempt=attempt.getInt("attempt",mAttempt);
+        mTotalAttempt=totattempt.getInt("totattempt",mTotalAttempt);
+        final EditText answerEditText = (EditText)findViewById(R.id.answer_edit_text);
+        final TextView questionTextView=(TextView)findViewById(R.id.question_text_view);
+        final TextView hintTextView=(TextView)findViewById(R.id.hint_text_view);
+        final TextView attemptTextView=(TextView)findViewById(R.id.attempt_text_view);
+        final TextView levelTextView=(TextView)findViewById(R.id.level_text_view);
         Typeface typeface=Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Infinity.ttf");
         questionTextView.setTypeface(typeface);
         hintTextView.setTypeface(typeface);
         attemptTextView.setTypeface(typeface);
         levelTextView.setTypeface(typeface);
-        if(mattempt!=0)
-            attemptTextView.setText("Attempts: "+mattempt);
-        if(mcount<questions.length) {
-            questionTextView.append(questions[mcount]);
+        attemptTextView.setText("Attempts: "+mAttempt);
+        if(mcount<mQuestionList.size()) {
+            questionTextView.setText(mQuestionList.get(mcount));
             levelTextView.setText("Level: " + (mcount+1));
         }
         else{
@@ -92,29 +107,27 @@ public class QuestionActivity extends AppCompatActivity {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     ans1 = answerEditText.getText().toString();
-                    if (ans1.trim().equalsIgnoreCase(answers[mcount]) && !(ans1.isEmpty())) {
+                    if (ans1.trim().equalsIgnoreCase(mAnswerList.get(mcount)) && !(ans1.isEmpty())) {
                         mcount++;
-                        mtotattempt++;
-                        mattempt = 0;
-                        attemptTextView.setText("");
+                        mTotalAttempt++;
+                        mAttempt=0;
+                        attemptTextView.setText("Attempts: "+mAttempt);
                         Toast.makeText(getApplicationContext(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
                         hintTextView.setText("");
                         answerEditText.setText("");
-                        if (mcount != questions.length) {
-                            questionTextView.setText(questions[mcount]);
+                        if(mcount<mQuestionList.size()){
+                            questionTextView.setText(mQuestionList.get(mcount));
                             levelTextView.setText("Level: " + (mcount + 1));
-                        } else {
-                            Intent intent = new Intent(getApplicationContext(), EndActivity.class);
-                            startActivity(intent);
-                        }
-
+                            }
+                        else
+                            startActivity(new Intent(getApplicationContext(),EndActivity.class));
                     } else {
                         int r = (int) (java.lang.Math.random() * 6);
                         answerEditText.setText("");
+                        mAttempt++;
+                        mTotalAttempt++;
+                        attemptTextView.setText("Attempts: "+mAttempt);
                         Toast.makeText(getApplicationContext(), error[r], Toast.LENGTH_SHORT).show();
-                        mattempt++;
-                        mtotattempt++;
-                        attemptTextView.setText("Attempts: " + mattempt);
                     }
                     handled = true;
                 }
@@ -126,27 +139,26 @@ public class QuestionActivity extends AppCompatActivity {
         DoneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View dview) {
                 ans1 = answerEditText.getText().toString();
-                if (ans1.trim().equalsIgnoreCase(answers[mcount]) && !(ans1.isEmpty())) {
+                if (ans1.trim().equalsIgnoreCase(mAnswerList.get(mcount)) && !(ans1.isEmpty())) {
                     mcount++;
-                    mtotattempt++;
-                    mattempt=0;
+                    mTotalAttempt++;
+                    mAttempt=0;
+                    attemptTextView.setText("Attempts: "+mAttempt);
                     Toast.makeText(getApplicationContext(), R.string.correcttoast, Toast.LENGTH_SHORT).show();
                     hintTextView.setText("");
                     answerEditText.setText("");
-                    if (mcount != questions.length) {
-                        questionTextView.setText(questions[mcount]);
-                        levelTextView.setText("Level: " + (mcount+1));
+                    if(mcount<mQuestionList.size()){
+                            questionTextView.setText(mQuestionList.get(mcount + 1));
+                            levelTextView.setText("Level: " + (mcount + 1));
                     }
-                    else {
-                        Intent intent = new Intent(getApplicationContext(), EndActivity.class);
-                        startActivity(intent);
-                    }
-
+                    else
+                        startActivity(new Intent(getApplicationContext(),EndActivity.class));
                 } else {
                     int r = (int) (java.lang.Math.random() * 6);
                     answerEditText.setText("");
-                    mattempt++;
-                    mtotattempt++;
+                    mAttempt++;
+                    mTotalAttempt++;
+                    attemptTextView.setText("Attempts: "+mAttempt);
                     Toast.makeText(getApplicationContext(), error[r], Toast.LENGTH_SHORT).show();
                 }
             }
@@ -157,7 +169,7 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 hintTextView.setGravity(Gravity.CENTER);
-                hintTextView.setText(hint[mcount]);
+                hintTextView.setText(mHintList.get(mcount));
             }
         });
         Button GoogleButton=(Button)findViewById(R.id.googlebutton);
@@ -204,8 +216,8 @@ public class QuestionActivity extends AppCompatActivity {
         SharedPreferences totattempt=getSharedPreferences(PREFS_FILE, 2);
         SharedPreferences.Editor editor= count.edit();
         editor.putInt("count",mcount);
-        editor.putInt("attempt",mattempt);
-        editor.putInt("totattempt", mtotattempt);
+        editor.putInt("attempt",mAttempt);
+        editor.putInt("totattempt", mTotalAttempt);
         editor.apply();
         super.onStop();
 
@@ -217,34 +229,5 @@ public class QuestionActivity extends AppCompatActivity {
         intent.putExtra("EXIT", true);
         startActivity(intent);
     }
-    public void prepareData() {
-        JsonObjectRequest quesRequest = new JsonObjectRequest(Request.Method.GET, Constants.URL_QUESTIONS, (String) null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                mQuestionList.clear();
 
-                Log.d("Questions", response.toString());
-                try {
-                    JSONArray data = response.getJSONArray("data");
-                    for (int i = 0; i < data.length(); i++) {
-                        Question question = new Question();
-                        question.setQuestion(data.getJSONObject(i).getString("question"));
-                        question.setAnswer(data.getJSONObject(i).getString("answer"));
-                        question.setHint(data.getJSONObject(i).getString("hint"));
-                        dbHelper.insertQuestion(question);
-                        mQuestionList.add(question);
-                        Log.d("Inserted",data.getJSONObject(i).getString("question"));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        Volley.newRequestQueue(getApplicationContext()).add(quesRequest);
-    }
 }

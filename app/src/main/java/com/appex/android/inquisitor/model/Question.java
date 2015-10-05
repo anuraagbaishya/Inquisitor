@@ -4,6 +4,16 @@ package com.appex.android.inquisitor.model;
  * Created by anuraag on 23/9/15.
  */
 public class Question {
+    private int QuestionNo;
+
+    public int getQuestionNo() {
+        return QuestionNo;
+    }
+
+    public void setQuestionNo(int questionNo) {
+        QuestionNo = questionNo;
+    }
+
     private String Question;
     private String Answer;
     private String Hint;

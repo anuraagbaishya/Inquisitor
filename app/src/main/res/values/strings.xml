@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Inquisitor</string>
-
+    <string name="hint">Answer</string>
     <string name="text">About:</string>
     <string name="text2">INQUISITOR V1.0.0</string>
     <string name="text3">Developed by Appex Corporation</string>
@@ -14,7 +14,10 @@
     <string name="about">About</string>
     <string name="enter">ENTER THE INQUISITOR</string>
     <string name="quesButton">View Questions</string>
-
+    <string name="whoops">Whoops!</string>
+    <string name="no_connection">No Internet connection found.</string>
+    <string name="try_again">Please try again.</string>
+    <string name="retry">Retry</string>
     <string name="sharemsg">Hi! I\'m using this app called Inquisitor. I think you should try it!</string>
     <string name="sendmsg">Share message via:</string>
 

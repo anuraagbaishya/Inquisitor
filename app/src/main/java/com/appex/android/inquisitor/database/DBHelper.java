@@ -17,20 +17,21 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME="Questions.db";
     public static final String QUESTION_TABLE_NAME="questions";
     public static final String COLUMN_ID="id";
+    public static final String Q_NO="qno";
     public static final String QUESTION="ques";
     public static final String ANSWER="ans";
     public static final String HINT="hint";
     private Context mContext;
 
     public DBHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
         mContext = context;
     }
-    
+
     @Override
     public void onCreate(SQLiteDatabase db){
-        db.execSQL("CREATE TABLE IF  NOT EXISTS " + QUESTION_TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," + QUESTION
-                + " TEXT," + ANSWER + " TEXT," + HINT + " TEXT);");
+        db.execSQL("CREATE TABLE IF  NOT EXISTS " + QUESTION_TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," + Q_NO + " INTEGER,"
+                + QUESTION + " TEXT," + ANSWER + " TEXT," + HINT + " TEXT);");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -42,17 +43,54 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         boolean QuesExists = false;
         for (Question question1 : getAllQuestions()) {
-            if (question1.getQuestion().equals(question.getQuestion()) &&question1.getAnswer().equals(question.getAnswer()) &&question1.getHint().equals(question.getHint())) {
+            if (question1.getQuestionNo()==question.getQuestionNo()&&question1.getQuestion().equals(question.getQuestion()) &&question1.getAnswer().equals(question.getAnswer()) &&question1.getHint().equals(question.getHint())) {
                 QuesExists = true;
                 break;
             }
         }
         if (!QuesExists) {
+            contentValues.put(Q_NO,question.getQuestionNo());
             contentValues.put(QUESTION, question.getQuestion());
             contentValues.put(ANSWER, question.getAnswer());
             contentValues.put(HINT,question.getHint());
             db.insert(QUESTION_TABLE_NAME, null, contentValues);
         }
+    }
+    public ArrayList<String> getAnswers(){
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor rows=db.rawQuery("SELECT * FROM " + QUESTION_TABLE_NAME, null);
+        ArrayList<String> answers=new ArrayList<>();
+        if(rows!=null){
+            for(int i=0;i<rows.getCount();i++){
+                rows.moveToPosition(i);
+                answers.add(rows.getString(3));
+            }
+        }
+        return answers;
+    }
+    public ArrayList<String> getQuestions(){
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor rows=db.rawQuery("SELECT * FROM " + QUESTION_TABLE_NAME, null);
+        ArrayList<String> questions=new ArrayList<>();
+        if(rows!=null){
+            for(int i=0;i<rows.getCount();i++){
+                rows.moveToPosition(i);
+                questions.add(rows.getString(2));
+            }
+        }
+        return questions;
+    }
+    public ArrayList<String> getHints(){
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor rows=db.rawQuery("SELECT * FROM " + QUESTION_TABLE_NAME, null);
+        ArrayList<String> hints=new ArrayList<>();
+        if(rows!=null){
+            for(int i=0;i<rows.getCount();i++){
+                rows.moveToPosition(i);
+                hints.add(rows.getString(4));
+            }
+        }
+        return hints;
     }
     public ArrayList<Question> getAllQuestions() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -62,9 +100,10 @@ public class DBHelper extends SQLiteOpenHelper {
             for (int i = 0; i < rows.getCount(); i++) {
                 rows.moveToPosition(i);
                 Question question = new Question();
-                question.setQuestion(rows.getString(1));
-                question.setAnswer(rows.getString(2));
-                question.setHint(rows.getString(3));
+                question.setQuestionNo(rows.getInt(1));
+                question.setQuestion(rows.getString(2));
+                question.setAnswer(rows.getString(3));
+                question.setHint(rows.getString(4));
                 questions.add(question);
             }
         }
@@ -73,7 +112,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void dropTables() {
         SQLiteDatabase db = this.getReadableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + QUESTION_TABLE_NAME);
-        db.execSQL("CREATE TABLE IF  NOT EXISTS " + QUESTION_TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," + QUESTION
-                + " TEXT," + ANSWER + " TEXT," + HINT + " TEXT);");
+        db.execSQL("CREATE TABLE IF  NOT EXISTS " + QUESTION_TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," + Q_NO +" INTEGER,"
+                + QUESTION + " TEXT," + ANSWER + " TEXT," + HINT + " TEXT);");
     }
 }

@@ -2,74 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.github.chipset95/Potato-Library/0.1.4/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="bdb9c1d09e06ea6d5323ac0f71cd211756564cf3">
-        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-2da9f51cb6dae386fdceebc75d30751d4571ff70.jar" />
-    </item>
-    <item
-        jar="/home/anuraag/StudioProjects/Inquisitor/app/libs/Parse-1.10.2.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="a859414011ce2c18187acc83319688e6bd340635">
-        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/Parse-1.10.2-71e040de1d6693a4d3a54a589328f376e46d5c26.jar" />
-    </item>
-    <item
-        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-ddb499eafaa2bc0125137317a7e3ed804671c3fa.jar" />
-    </item>
-    <item
-        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-f88df8e317b4400a036970db013c5c02b2afaf98.jar" />
-    </item>
-    <item
-        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-9a073a17c0527ea0ab0e2e599549189771473861.jar" />
-    </item>
-    <item
-        jar="/home/anuraag/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.17/f417d7f776d1ee5858fc04d9362aa45e9bedd26b/library-1.0.17.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="f417d7f776d1ee5858fc04d9362aa45e9bedd26b">
-        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/library-1.0.17-a24e06754937db2bc0732a21e1fc18814f6d0ad3.jar" />
-    </item>
-    <item
-        jar="/home/anuraag/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.0/6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd/bolts-android-1.2.0.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
-        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/bolts-android-1.2.0-cf64501f84de96109b952189af53a9fc57bb94cc.jar" />
-    </item>
-    <item
-        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.3/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="b7a78990c10481f43cb4909f535ef4f11e60f1ab">
-        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-63a48e93b523e9a1e56e9e9cd696075aef081926.jar" />
-    </item>
-    <item
-        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.2/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="e99413cdc93bd7b001d312a4a33d25ac21042f69">
-        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-d605b9973060ae3bd6c4b07f61ebec4bbd278350.jar" />
-    </item>
-    <item
         jar="/home/anuraag/AndroidDeveloperTools/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
         jumboMode="false"
         revision="23.0.0"
         sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
         <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-9a4bdd337f25e14b9ca19e590fb8f20fd5e73057.jar" />
+    </item>
+    <item
+        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.5.2/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="0c7f9fb9a729166c69fa585e01be2fe8fab4f45c">
+        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-4541a4f1c1072d707cf6a45ef63cd4fd8e552654.jar" />
     </item>
     <item
         jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.6/jars/classes.jar"
@@ -79,6 +23,41 @@
         <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-7f56970b263e56abe4fd36ba01f49daaf2d98164.jar" />
     </item>
     <item
+        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.github.chipset95/Potato-Library/0.1.4/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="bdb9c1d09e06ea6d5323ac0f71cd211756564cf3">
+        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-2da9f51cb6dae386fdceebc75d30751d4571ff70.jar" />
+    </item>
+    <item
+        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="b7a78990c10481f43cb4909f535ef4f11e60f1ab">
+        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-63a48e93b523e9a1e56e9e9cd696075aef081926.jar" />
+    </item>
+    <item
+        jar="/home/anuraag/StudioProjects/Inquisitor/app/libs/Parse-1.10.2.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="a859414011ce2c18187acc83319688e6bd340635">
+        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/Parse-1.10.2-71e040de1d6693a4d3a54a589328f376e46d5c26.jar" />
+    </item>
+    <item
+        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="1821601ddbec5ff125653097812823388700af74">
+        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-51f67da0a944f0ddad62052ae1a70386cbe87732.jar" />
+    </item>
+    <item
+        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-f88df8e317b4400a036970db013c5c02b2afaf98.jar" />
+    </item>
+    <item
         jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.5/jars/classes.jar"
         jumboMode="false"
         revision="23.0.0"
@@ -86,11 +65,39 @@
         <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-e54add9b27fea0bb3a253a8cac7fa9edf0a1dbdf.jar" />
     </item>
     <item
-        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.5.2/jars/classes.jar"
+        jar="/home/anuraag/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.17/f417d7f776d1ee5858fc04d9362aa45e9bedd26b/library-1.0.17.jar"
         jumboMode="false"
         revision="23.0.0"
-        sha1="0c7f9fb9a729166c69fa585e01be2fe8fab4f45c">
-        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-4541a4f1c1072d707cf6a45ef63cd4fd8e552654.jar" />
+        sha1="f417d7f776d1ee5858fc04d9362aa45e9bedd26b">
+        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/library-1.0.17-a24e06754937db2bc0732a21e1fc18814f6d0ad3.jar" />
+    </item>
+    <item
+        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-9a073a17c0527ea0ab0e2e599549189771473861.jar" />
+    </item>
+    <item
+        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-ddb499eafaa2bc0125137317a7e3ed804671c3fa.jar" />
+    </item>
+    <item
+        jar="/home/anuraag/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.0/6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd/bolts-android-1.2.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/bolts-android-1.2.0-cf64501f84de96109b952189af53a9fc57bb94cc.jar" />
+    </item>
+    <item
+        jar="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.2/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="e99413cdc93bd7b001d312a4a33d25ac21042f69">
+        <dex dex="/home/anuraag/StudioProjects/Inquisitor/app/build/intermediates/pre-dexed/debug/classes-d605b9973060ae3bd6c4b07f61ebec4bbd278350.jar" />
     </item>
 
 </items>
